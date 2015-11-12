@@ -34,7 +34,7 @@ public class MyTabListener implements MouseListener{
 			tab.setState(State.INACTIVE);
 		}
 		tabHead.setState(State.ACTIVE);
-		//.setState(State.ACTIVE);
+		//.setState(Kind.ACTIVE);
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package com.fuzzy.metro.components;
 
 import java.awt.Color;
 
-public enum State {
+public enum Kind {
 	DEFAULT(0),
 	SUCCESS(1),
 	DANGER(2),
@@ -14,7 +14,7 @@ public enum State {
 	private final Color color;
 	private Color fore;
 	
-	private State(int type){
+	private Kind(int type){
 		fore = Color.WHITE;
 		switch(type){
 		case 0: color = Color.LIGHT_GRAY;

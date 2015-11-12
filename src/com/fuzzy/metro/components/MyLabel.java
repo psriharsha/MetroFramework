@@ -22,7 +22,7 @@ public class MyLabel extends JLabel{
 			font = font.deriveFont(Font.PLAIN, 13);
 			switch(this){
 			case TITLE: font = font.deriveFont(Font.BOLD, 13); break;
-			case HEAD: font = font.deriveFont(Font.BOLD, 15); break;
+			case HEAD: font = font.deriveFont(Font.PLAIN, 20); break;
 			case GEN: 
 			}
 			return font;
@@ -45,10 +45,10 @@ public class MyLabel extends JLabel{
 	}
 	
 	public MyLabel(String text, Type type){
-		this(text, type, State.DARK);
+		this(text, type, Kind.DARK);
 	}
 	
-	public MyLabel(String text,Type type, State state){
+	public MyLabel(String text,Type type, Kind state){
 		super(text);
 		setFont(type.getFont());
 		if(type != Type.TITLE){
@@ -59,7 +59,7 @@ public class MyLabel extends JLabel{
 		setBorder(type.getBorder());
 	}
 	
-	public void setState(State state){
+	public void setState(Kind state){
 		setForeground(state.getStateColor());
 	}
 	

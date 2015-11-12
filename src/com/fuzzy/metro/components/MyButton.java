@@ -24,7 +24,7 @@ public class MyButton extends JButton{
 		setBorder(BorderFactory.createEmptyBorder(5,15,5,15));
 	}
 	
-	public MyButton(String text, State state){
+	public MyButton(String text, Kind state){
 		super(text);
 		Font font = new MyFont().getFont();
 		font = font.deriveFont(Font.PLAIN, 12);

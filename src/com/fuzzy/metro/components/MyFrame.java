@@ -6,18 +6,16 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
+import com.fuzzy.metro.Singleton;
+import com.fuzzy.metro.listeners.MyDragListener;
 import com.fuzzy.metro.listeners.MyWindowListener;
 
 public abstract class MyFrame extends JFrame{
@@ -50,7 +48,7 @@ public abstract class MyFrame extends JFrame{
 		if(isResizable){
 			makeTheFrameResizable();
 		}
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setUndecorated(true);
 		setShape(new java.awt.geom.RoundRectangle2D.Double(0,0,getWidth(),getHeight(),5,5));
         setLocationRelativeTo(null);
@@ -100,64 +98,23 @@ public abstract class MyFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				System.exit(0);
+				if(getDefaultCloseOperation() == EXIT_ON_CLOSE)
+					System.exit(0);
+				else if(getDefaultCloseOperation() == DISPOSE_ON_CLOSE)
+					dispose();
 			}
 		});
 		menuPanel.add(min);
 		menuPanel.add(plus);
 		menuPanel.add(close);
 		menuBar.add(menuPanel, BorderLayout.EAST);
-		menuBar.addMouseListener(new MouseListener(){
-
-			@Override
-			public void mouseClicked(MouseEvent event) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent event) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent event) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent event) {
-				// TODO Auto-generated method stub
-				locX = event.getX();
-				locY = event.getY();
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		menuBar.addMouseMotionListener(new MouseMotionListener(){
-
-			@Override
-			public void mouseDragged(MouseEvent event) {
-				// TODO Auto-generated method stub
-				setLocation(new Point(getLocation().x + event.getX() - locX, getLocation().y + event.getY() - locY));
-			}
-
-			@Override
-			public void mouseMoved(MouseEvent event) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		title = new MyLabel("Metro UI".toUpperCase(), MyLabel.Type.TITLE);
+		MyDragListener dragListener = new MyDragListener(this);
+		menuBar.addMouseListener(dragListener);
+		menuBar.addMouseMotionListener(dragListener);
+		title = new MyLabel(Singleton.projectTitle.toUpperCase(), MyLabel.Type.TITLE);
 		menuBar.add(title, BorderLayout.WEST);
 		setJMenuBar(menuBar);
-		setStatus(State.DANGER);
+		setKind(Kind.DEFAULT);
 		setMinWidth();
 		getRootPane().setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Color.LIGHT_GRAY));
 	}	
@@ -168,7 +125,7 @@ public abstract class MyFrame extends JFrame{
 		setMinimumSize(new Dimension(w,150));
 	}
 
-	public void setStatus(State state){
+	public void setKind(Kind state){
 		//menuBar.setBorder(BorderFactory.createMatteBorder(5, 0, 0, 0, state.getStateColor()));
 		menuBar.setBackground(state.getStateColor());
 	}

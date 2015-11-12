@@ -6,15 +6,19 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.BoxLayout;
 
+import com.fuzzy.metro.components.Kind;
 import com.fuzzy.metro.components.MyButton;
 import com.fuzzy.metro.components.MyFrame;
 import com.fuzzy.metro.components.MyLabel;
+import com.fuzzy.metro.components.MyOptionPane;
 import com.fuzzy.metro.components.MyPanel;
 import com.fuzzy.metro.components.MyTabHead;
 import com.fuzzy.metro.components.MyTabHead.State;
@@ -32,9 +36,10 @@ public class FirstFrame extends MyFrame {
 		super();
 		createLayout(getContentPane());
 		setTitle("Demo Frame - Metro UI");
-		setStatus(com.fuzzy.metro.components.State.DANGER);
+		setKind(com.fuzzy.metro.components.Kind.DANGER);
 		setResizable(true);
 		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setMinWidth();
 	}
 	
@@ -46,7 +51,7 @@ public class FirstFrame extends MyFrame {
 		List<String> tabHeaders = new ArrayList<String>();
 		tabHeaders.add(FORM);
 		tabHeaders.add(BUTTON);
-		tabHeaders.add(LABEL);
+		tabHeaders.add(OTHER);
 		tabControl = new MyPanel();
 		tabControl.setLayout(new BoxLayout(tabControl, BoxLayout.X_AXIS));
 		tabHeads = new ArrayList<MyTabHead>();
@@ -64,20 +69,34 @@ public class FirstFrame extends MyFrame {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		tabForm.add(new MyLabel("Text Field"), gbc);
+		gbc.anchor = GridBagConstraints.WEST;
+		tabForm.add(new MyLabel("Text Field", MyLabel.Type.GEN, Kind.INFO), gbc);
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		tabForm.add(new MyTextField(15), gbc);
 		tabButton = new MyPanel();
-		tabButton.add(new MyButton( "SUCCESS", com.fuzzy.metro.components.State.SUCCESS));
-		tabButton.add(new MyButton( "DANGER", com.fuzzy.metro.components.State.DANGER));
-		tabButton.add(new MyButton( "WARNING", com.fuzzy.metro.components.State.WARNING));
-		tabButton.add(new MyButton( "INFO", com.fuzzy.metro.components.State.INFO));
-		tabButton.add(new MyButton( "DARK", com.fuzzy.metro.components.State.DARK));
-		tabButton.add(new MyButton( "DEFAULT", com.fuzzy.metro.components.State.DEFAULT));
+		tabButton.add(new MyButton( "Success", Kind.SUCCESS));
+		tabButton.add(new MyButton( "Danger", Kind.DANGER));
+		tabButton.add(new MyButton( "Warning", Kind.WARNING));
+		tabButton.add(new MyButton( "Info", Kind.INFO));
+		tabButton.add(new MyButton( "Dark", Kind.DARK));
+		tabButton.add(new MyButton( "Default", Kind.DEFAULT));
+		tabOther = new MyPanel();
+		popUp = new MyButton("Info Message Box", Kind.INFO);
+		popUp.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new MyOptionPane("Message Box", "This is how the info message look like!!", Kind.INFO);
+			}
+			
+		});
+		tabOther.add(popUp);
 		tabContent.setLayout(new CardLayout());
 		tabContent.add(tabForm, FORM);
 		tabContent.add(tabButton, BUTTON);
+		tabContent.add(tabOther, OTHER);
 		tabContent.setSize(new Dimension(300,300));
 		contentPane.add(tabControl, BorderLayout.PAGE_START);
 		contentPane.add(tabContent, BorderLayout.PAGE_END);
@@ -90,11 +109,11 @@ public class FirstFrame extends MyFrame {
 		new FirstFrame();
 	}
 	
-	MyButton test1,test2,test3,test4,test5;
+	MyButton popUp;
 	final static String FORM = "Form";
 	final static String BUTTON = "Button";
-	final static String LABEL = "Label";
+	final static String OTHER = "Other";
 	MyPanel tabControl, tabContent;
-	MyPanel tabForm, tabButton, tabLabel;
+	MyPanel tabForm, tabButton, tabOther;
 	List<MyTabHead> tabHeads;	
 }
