@@ -25,7 +25,7 @@ public class MyTextField extends JTextField{
 	private void setSettingBorder() {
 		// TODO Auto-generated method stub
 		Border padding = BorderFactory.createEmptyBorder(10, 15, 10, 15);
-		Border outer = BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5), BorderFactory.createMatteBorder(0, 1, 1, 1, Color.LIGHT_GRAY));
+		Border outer = BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5), BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(216,225,228)));
 		setBorder(BorderFactory.createCompoundBorder(outer, padding));
 	}
 

@@ -33,6 +33,7 @@ public class MyOptionPane extends MyFrame {
 	
 	public MyOptionPane(String title, String heading, String message, Kind kind){
 		//super(new JFrame(), true);
+		super(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setUndecorated(true);
 		setLayout(new BorderLayout());
@@ -51,7 +52,6 @@ public class MyOptionPane extends MyFrame {
 		contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		contentPanel.add(new MyLabel(message), BorderLayout.CENTER);
 		add(contentPanel, BorderLayout.LINE_END);
-		setResizable(false);
 		setLocationRelativeTo(null);
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		pack();

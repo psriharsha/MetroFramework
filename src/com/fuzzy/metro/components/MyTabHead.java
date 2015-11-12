@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
+import com.fuzzy.metro.Singleton;
 import com.fuzzy.metro.listeners.MyTabListener;
 
 public class MyTabHead extends JLabel{
@@ -40,7 +41,7 @@ public class MyTabHead extends JLabel{
 		switch(state){
 		case ACTIVE: fore = Color.BLACK;
 				Border padding = BorderFactory.createEmptyBorder(10, 15, 10, 15);
-				Border divider = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLUE);
+				Border divider = BorderFactory.createMatteBorder(0, 0, 2, 0, Singleton.defaultColor);
 				setBorder(BorderFactory.createCompoundBorder(divider, padding));
 			break;
 		case INACTIVE: fore = Color.LIGHT_GRAY;

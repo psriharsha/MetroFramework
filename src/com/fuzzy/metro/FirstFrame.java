@@ -36,7 +36,7 @@ public class FirstFrame extends MyFrame {
 		super();
 		createLayout(getContentPane());
 		setTitle("Demo Frame - Metro UI");
-		setKind(com.fuzzy.metro.components.Kind.DANGER);
+		//setKind(com.fuzzy.metro.components.Kind.DANGER);
 		setResizable(true);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -82,8 +82,19 @@ public class FirstFrame extends MyFrame {
 		tabButton.add(new MyButton( "Dark", Kind.DARK));
 		tabButton.add(new MyButton( "Default", Kind.DEFAULT));
 		tabOther = new MyPanel();
-		popUp = new MyButton("Info Message Box", Kind.INFO);
-		popUp.addActionListener(new ActionListener(){
+		defaultUp = new MyButton("Default Message Box", Kind.DEFAULT);
+		defaultUp.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				new MyOptionPane("Message Box", "This is how the info message look like!!", Kind.DEFAULT);
+			}
+			
+		});
+		tabOther.add(defaultUp);
+		infoUp = new MyButton("Info Message Box", Kind.INFO);
+		infoUp.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -92,7 +103,7 @@ public class FirstFrame extends MyFrame {
 			}
 			
 		});
-		tabOther.add(popUp);
+		tabOther.add(infoUp);
 		tabContent.setLayout(new CardLayout());
 		tabContent.add(tabForm, FORM);
 		tabContent.add(tabButton, BUTTON);
@@ -109,7 +120,7 @@ public class FirstFrame extends MyFrame {
 		new FirstFrame();
 	}
 	
-	MyButton popUp;
+	MyButton infoUp, defaultUp;
 	final static String FORM = "Form";
 	final static String BUTTON = "Button";
 	final static String OTHER = "Other";
