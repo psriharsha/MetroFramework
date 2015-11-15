@@ -116,7 +116,7 @@ public abstract class MyFrame extends JFrame{
 		setJMenuBar(menuBar);
 		setKind(Kind.DEFAULT);
 		setMinWidth();
-		getRootPane().setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Color.LIGHT_GRAY));
+		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Singleton.defaultColor));
 	}	
 
 	protected void setMinWidth() {
@@ -135,7 +135,7 @@ public abstract class MyFrame extends JFrame{
 	}
 	
 	private void maximise(){
-		GraphicsEnvironment env=GraphicsEnvironment.getLocalGraphicsEnvironment();
+		/*GraphicsEnvironment env=GraphicsEnvironment.getLocalGraphicsEnvironment();
 		   
 	    // Get the screen devices
 	    GraphicsDevice[] g=env.getScreenDevices();
@@ -143,7 +143,14 @@ public abstract class MyFrame extends JFrame{
 	    // I only have one, the first one
 	    // If current window is full screen, set fullscreen window to null
 	    // else set the current screen
-	    g[0].setFullScreenWindow(g[0].getFullScreenWindow()==this?null:this);
+	    g[0].setFullScreenWindow(g[0].getFullScreenWindow()==this?null:this);*/
+		int winState = getExtendedState();
+		if(winState == NORMAL){
+			winState = MAXIMIZED_BOTH;
+		}else{
+			winState = NORMAL;
+		}
+		setExtendedState(winState);
 	}
 
 	public abstract void createLayout(Container contentPane);
