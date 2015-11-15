@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -128,6 +126,7 @@ public abstract class MyFrame extends JFrame{
 	public void setKind(Kind state){
 		//menuBar.setBorder(BorderFactory.createMatteBorder(5, 0, 0, 0, state.getStateColor()));
 		menuBar.setBackground(state.getStateColor());
+		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, state.getStateColor()));
 	}
 	
 	public void setTitle(String windowHead){
