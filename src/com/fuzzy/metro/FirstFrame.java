@@ -4,14 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 
 import com.fuzzy.metro.components.Kind;
@@ -20,6 +19,7 @@ import com.fuzzy.metro.components.MyFrame;
 import com.fuzzy.metro.components.MyLabel;
 import com.fuzzy.metro.components.MyOptionPane;
 import com.fuzzy.metro.components.MyPanel;
+import com.fuzzy.metro.components.MyScrollPane;
 import com.fuzzy.metro.components.MyTabHead;
 import com.fuzzy.metro.components.MyTabHead.State;
 import com.fuzzy.metro.components.MyTextField;
@@ -52,6 +52,7 @@ public class FirstFrame extends MyFrame {
 		tabHeaders.add(FORM);
 		tabHeaders.add(BUTTON);
 		tabHeaders.add(OTHER);
+		tabHeaders.add(LOGIN);
 		tabControl = new MyPanel();
 		tabControl.setLayout(new BoxLayout(tabControl, BoxLayout.X_AXIS));
 		tabHeads = new ArrayList<MyTabHead>();
@@ -65,15 +66,7 @@ public class FirstFrame extends MyFrame {
 		}
 		tabHeads.get(0).setState(State.ACTIVE);
 		tabForm = new MyPanel();
-		tabForm.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.anchor = GridBagConstraints.WEST;
-		tabForm.add(new MyLabel("Text Field", MyLabel.Type.GEN, Kind.INFO), gbc);
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		tabForm.add(new MyTextField(15), gbc);
+		tabForm.add(new MyTextField(15), Box.TOP_ALIGNMENT);
 		tabButton = new MyPanel();
 		tabButton.add(new MyButton( "Success", Kind.SUCCESS));
 		tabButton.add(new MyButton( "Danger", Kind.DANGER));
@@ -84,33 +77,37 @@ public class FirstFrame extends MyFrame {
 		tabOther = new MyPanel();
 		defaultUp = new MyButton("Default Message Box", Kind.DEFAULT);
 		defaultUp.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				new MyOptionPane("Message Box", "This is how the info message look like!!", Kind.DEFAULT);
-			}
-			
+			}			
 		});
 		tabOther.add(defaultUp);
 		infoUp = new MyButton("Info Message Box", Kind.INFO);
 		infoUp.addActionListener(new ActionListener(){
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				new MyOptionPane("Message Box", "This is how the info message look like!!", Kind.INFO);
-			}
-			
+			}			
 		});
 		tabOther.add(infoUp);
+		
+		tabLogin = new MyPanel();
+		tabLogin.add(new MyLabel("Log me in", com.fuzzy.metro.components.MyLabel.Type.HEAD));
 		tabContent.setLayout(new CardLayout());
 		tabContent.add(tabForm, FORM);
 		tabContent.add(tabButton, BUTTON);
 		tabContent.add(tabOther, OTHER);
+		tabContent.add(tabLogin, LOGIN);
 		tabContent.setSize(new Dimension(300,300));
 		contentPane.add(tabControl, BorderLayout.PAGE_START);
+<<<<<<< HEAD
 		contentPane.add(tabContent, BorderLayout.LINE_START);
+=======
+		contentPane.add(tabContent, BorderLayout.AFTER_LAST_LINE);
+>>>>>>> origin/master
 		setVisible(true);
 		pack();
 	}
@@ -124,7 +121,9 @@ public class FirstFrame extends MyFrame {
 	final static String FORM = "Form";
 	final static String BUTTON = "Button";
 	final static String OTHER = "Other";
+	final static String LOGIN = "Login";
 	MyPanel tabControl, tabContent;
-	MyPanel tabForm, tabButton, tabOther;
-	List<MyTabHead> tabHeads;	
+	MyPanel tabForm, tabButton, tabOther, tabLogin;
+	List<MyTabHead> tabHeads;
+	MyScrollPane myScrollPane;
 }

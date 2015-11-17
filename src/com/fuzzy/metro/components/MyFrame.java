@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -116,7 +114,7 @@ public abstract class MyFrame extends JFrame{
 		setJMenuBar(menuBar);
 		setKind(Kind.DEFAULT);
 		setMinWidth();
-		getRootPane().setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Color.LIGHT_GRAY));
+		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, Singleton.defaultColor));
 	}	
 
 	protected void setMinWidth() {
@@ -128,6 +126,7 @@ public abstract class MyFrame extends JFrame{
 	public void setKind(Kind state){
 		//menuBar.setBorder(BorderFactory.createMatteBorder(5, 0, 0, 0, state.getStateColor()));
 		menuBar.setBackground(state.getStateColor());
+		getRootPane().setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3, state.getStateColor()));
 	}
 	
 	public void setTitle(String windowHead){
@@ -135,7 +134,7 @@ public abstract class MyFrame extends JFrame{
 	}
 	
 	private void maximise(){
-		GraphicsEnvironment env=GraphicsEnvironment.getLocalGraphicsEnvironment();
+		/*GraphicsEnvironment env=GraphicsEnvironment.getLocalGraphicsEnvironment();
 		   
 	    // Get the screen devices
 	    GraphicsDevice[] g=env.getScreenDevices();
@@ -143,7 +142,14 @@ public abstract class MyFrame extends JFrame{
 	    // I only have one, the first one
 	    // If current window is full screen, set fullscreen window to null
 	    // else set the current screen
-	    g[0].setFullScreenWindow(g[0].getFullScreenWindow()==this?null:this);
+	    g[0].setFullScreenWindow(g[0].getFullScreenWindow()==this?null:this);*/
+		int winState = getExtendedState();
+		if(winState == NORMAL){
+			winState = MAXIMIZED_BOTH;
+		}else{
+			winState = NORMAL;
+		}
+		setExtendedState(winState);
 	}
 
 	public abstract void createLayout(Container contentPane);
