@@ -122,7 +122,7 @@ public abstract class MyFrame extends JFrame{
 	protected void setMinWidth() {
 		// TODO Auto-generated method stub
 		int w = title.getPreferredSize().width + menuPanel.getPreferredSize().width;
-		setMinimumSize(new Dimension(w,150));
+		setMinimumSize(new Dimension(w,100));
 	}
 
 	public void setKind(Kind state){

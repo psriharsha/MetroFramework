@@ -110,7 +110,7 @@ public class FirstFrame extends MyFrame {
 		tabContent.add(tabOther, OTHER);
 		tabContent.setSize(new Dimension(300,300));
 		contentPane.add(tabControl, BorderLayout.PAGE_START);
-		contentPane.add(tabContent, BorderLayout.PAGE_END);
+		contentPane.add(tabContent, BorderLayout.LINE_START);
 		setVisible(true);
 		pack();
 	}
