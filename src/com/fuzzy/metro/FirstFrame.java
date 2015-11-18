@@ -2,6 +2,7 @@ package com.fuzzy.metro;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 
@@ -23,6 +25,7 @@ import com.fuzzy.metro.components.MyScrollPane;
 import com.fuzzy.metro.components.MyTabHead;
 import com.fuzzy.metro.components.MyTabHead.State;
 import com.fuzzy.metro.components.MyTextField;
+import com.fuzzy.metro.components.WrapLayout;
 
 public class FirstFrame extends MyFrame {
 
@@ -95,19 +98,24 @@ public class FirstFrame extends MyFrame {
 		tabOther.add(infoUp);
 		
 		tabLogin = new MyPanel();
+		tabLogin.setLayout(new BoxLayout(tabLogin, BoxLayout.Y_AXIS));
 		tabLogin.add(new MyLabel("Log me in", com.fuzzy.metro.components.MyLabel.Type.HEAD));
+		MyPanel loginPanel = new MyPanel();
+		loginPanel.setLayout(new WrapLayout());
+		loginPanel.add(new MyTextField(20, "Username"));
+		loginPanel.add(new MyTextField(20, "Email ID"));
+		loginPanel.setBorder(BorderFactory.createTitledBorder(""));
+		loginPanel.setSize(getMinimumSize());
+		tabLogin.add(loginPanel);
 		tabContent.setLayout(new CardLayout());
 		tabContent.add(tabForm, FORM);
 		tabContent.add(tabButton, BUTTON);
 		tabContent.add(tabOther, OTHER);
 		tabContent.add(tabLogin, LOGIN);
 		tabContent.setSize(new Dimension(300,300));
-		contentPane.add(tabControl, BorderLayout.PAGE_START);
-<<<<<<< HEAD
-		contentPane.add(tabContent, BorderLayout.LINE_START);
-=======
-		contentPane.add(tabContent, BorderLayout.AFTER_LAST_LINE);
->>>>>>> origin/master
+		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+		contentPane.add(tabControl);
+		contentPane.add(tabContent);
 		setVisible(true);
 		pack();
 	}

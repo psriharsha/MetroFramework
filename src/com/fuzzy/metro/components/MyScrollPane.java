@@ -15,6 +15,7 @@ public class MyScrollPane extends JScrollPane{
 	
 	public MyScrollPane(Kind kind){
 		setBackground(kind.getStateColor());
+		setSize(getMaximumSize());
 	}
 
 }
