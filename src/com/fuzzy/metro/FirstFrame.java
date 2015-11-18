@@ -14,6 +14,8 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 import com.fuzzy.metro.components.Kind;
 import com.fuzzy.metro.components.MyButton;
@@ -106,7 +108,11 @@ public class FirstFrame extends MyFrame {
 		loginPanel.add(new MyTextField(20, "Email ID"));
 		loginPanel.setBorder(BorderFactory.createTitledBorder(""));
 		loginPanel.setSize(getMinimumSize());
-		tabLogin.add(loginPanel);
+		JScrollPane scrollPane = new JScrollPane(loginPanel);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.getViewport().setBackground(Color.WHITE);
+		tabLogin.add(scrollPane);
 		tabContent.setLayout(new CardLayout());
 		tabContent.add(tabForm, FORM);
 		tabContent.add(tabButton, BUTTON);
