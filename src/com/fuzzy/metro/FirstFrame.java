@@ -14,7 +14,6 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 import com.fuzzy.metro.components.Kind;

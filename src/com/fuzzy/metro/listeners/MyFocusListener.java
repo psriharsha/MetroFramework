@@ -4,16 +4,17 @@ import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import javax.swing.text.JTextComponent;
+
 import com.fuzzy.metro.components.MyOptionPane;
-import com.fuzzy.metro.components.MyTextField;
 
 public class MyFocusListener implements FocusListener{
 	
 	public String placeholder = "";
-	public MyTextField contextField = null;
+	public JTextComponent contextField = null;
 	MyOptionPane messageBox;
 	
-	public MyFocusListener(MyTextField field,String placeholder){
+	public MyFocusListener(JTextComponent field,String placeholder){
 		this.contextField = field;
 		this.placeholder = placeholder;
 	}
