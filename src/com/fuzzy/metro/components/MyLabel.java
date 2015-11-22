@@ -40,6 +40,10 @@ public class MyLabel extends JLabel{
 		
 	}
 	
+	public MyLabel(){
+		this("");
+	}
+	
 	public MyLabel(String text){
 		this(text, Type.GEN);
 	}
@@ -58,7 +62,7 @@ public class MyLabel extends JLabel{
 		}
 		setBorder(type.getBorder());
 	}
-	
+
 	public void setState(Kind state){
 		setForeground(state.getStateColor());
 	}

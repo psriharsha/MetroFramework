@@ -33,7 +33,7 @@ public class LoginFrame extends MyFrame {
 	private static final long serialVersionUID = 1L;
 	
 	LoginFrame(){
-		super(false);
+		super();
 		setTitle("Login - Chatter");
 		createLayout(getContentPane());
 		setVisible(true);

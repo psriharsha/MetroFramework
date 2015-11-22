@@ -1,16 +1,27 @@
 package com.fuzzy.metro.chatter;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JSplitPane;
+import javax.swing.ScrollPaneConstants;
 
+import com.fuzzy.metro.components.Kind;
+import com.fuzzy.metro.components.MyButton;
 import com.fuzzy.metro.components.MyFrame;
-import com.fuzzy.metro.components.MyLabel;
 import com.fuzzy.metro.components.MyList;
+import com.fuzzy.metro.components.MyListRenderer;
 import com.fuzzy.metro.components.MyPanel;
+import com.fuzzy.metro.components.MyScrollPane;
 import com.fuzzy.metro.components.MySplitPane;
+import com.fuzzy.metro.components.MyTextArea;
+import com.fuzzy.metro.components.MyTextField;
 
 public class ChatFrame extends MyFrame{
 
@@ -24,7 +35,7 @@ public class ChatFrame extends MyFrame{
 		setTitle("ChatFrame - Chatter");
 		createLayout(getContentPane());
 		setVisible(true);
-		setMinWidth();
+		setSize(new Dimension(500,500));
 	}
 
 	@Override
@@ -33,31 +44,69 @@ public class ChatFrame extends MyFrame{
 		listPanel = new MyPanel();
 		addUsers();
 		contentPanel = new MyPanel();
-		contentPanel.add(new MyLabel("This is left over"));
+		addContent();
 		setLayout(new BorderLayout());
 		splitPane = new MySplitPane(JSplitPane.HORIZONTAL_SPLIT, listPanel, contentPanel);
 		splitPane.setOneTouchExpandable(false);
 		contentPane.add(splitPane);
 		splitPane.setDividerSize(2);
 		splitPane.setOpaque(false);
-	    //splitPane.setBorder(BorderFactory.createMatteBorder(0, 1, 1, 1, Singleton.defaultColor	));
 	}
 	
 	private void addUsers() {
 		// TODO Auto-generated method stub
-		DefaultListModel<String> listModel = new DefaultListModel<String>();
-		listModel.addElement("Sri Harsha");
-		listModel.addElement("Sri Karthik");
-		listModel.addElement("Sai Hema");
+		DefaultListModel<CustomData> listModel = new DefaultListModel<CustomData>();
+		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 1, "Anna Williams" ) );
+		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 0, "Lucy Frank" ) );
+		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 3, "Mikle Garin" ) );
+		listModel.addElement ( new CustomData ( new Color ( 209, 52, 23 ), 0, "Joe Fritz" ) );
 		colleagues = new MyList(listModel);
-		listPanel.add(colleagues);
+		colleagues.setCellRenderer(new MyListRenderer(colleagues));
+		scrollList = new MyScrollPane(colleagues);
+		scrollList.setBorder(BorderFactory.createEmptyBorder());
+		scrollList.setOpaque(true);
+		scrollList.setBackground(Color.RED);
+		scrollList.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollList.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+		listPanel.setLayout(new GridLayout(1, 1));
+		listPanel.setBorder(BorderFactory.createEmptyBorder());
+		listPanel.add(scrollList);
+		int width = (int) (getSize().getWidth()/1.5);
+		int height = this.getSize().height;
+		listPanel.setMinimumSize(new Dimension(width, height));
+	}
+	
+	private void addContent(){
+		messagePanel = new MyPanel(false);
+		messageArea = new MyTextArea("");
+		messageArea.setEditable(false);
+		scrollMessage = new MyScrollPane(messageArea);
+		scrollMessage.setSize(getMaximumSize());
+		messagePanel.setLayout(new GridLayout());
+		messagePanel.add(scrollMessage, BorderLayout.NORTH);
+		messagePanel.setOpaque(true);
+		messagePanel.setBackground(Color.LIGHT_GRAY);
+		sendPanel = new MyPanel(false);
+		sendPanel.setLayout(new BoxLayout( sendPanel, BoxLayout.X_AXIS));
+		sendText = new MyTextField("Text to send");
+		sendPanel.add(sendText);
+		sendButton = new MyButton("Send", Kind.SUCCESS);
+		sendButton.setSize(50,20);
+		sendPanel.add(sendButton);
+		contentPanel.setLayout(new BorderLayout());
+		contentPanel.add(messagePanel, BorderLayout.CENTER);
+		contentPanel.add(sendPanel, BorderLayout.SOUTH);
 	}
 
 	public static void main(String[] args){
 		new ChatFrame();
 	}
 	
-	MyPanel listPanel, contentPanel;
+	MyPanel listPanel, contentPanel, sendPanel, messagePanel;
 	MyList colleagues;
 	MySplitPane splitPane;
+	MyScrollPane scrollList, scrollMessage;
+	MyTextField sendText;
+	MyButton sendButton;
+	MyTextArea messageArea;
 }

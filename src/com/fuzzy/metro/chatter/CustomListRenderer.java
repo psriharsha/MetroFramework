@@ -1,12 +1,28 @@
 package com.fuzzy.metro.chatter;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.RoundRectangle2D;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import com.fuzzy.metro.components.MyLabel;
 
 /**
  * @author Mikle Garin
@@ -19,8 +35,8 @@ public class CustomListRenderer extends DefaultListCellRenderer
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final ImageIcon crossIcon = new ImageIcon ( CustomListRenderer.class.getResource ( "logo.png" ) );
-    private static final ImageIcon tipIcon = new ImageIcon ( CustomListRenderer.class.getResource ( "logo.png" ) );
+	private static final ImageIcon crossIcon = new ImageIcon ( CustomListRenderer.class.getResource ( "comment.png" ) );
+    private static final ImageIcon tipIcon = new ImageIcon ( CustomListRenderer.class.getResource ( "comment.png" ) );
 
     /**
      * Sample frame with list.
@@ -65,7 +81,7 @@ public class CustomListRenderer extends DefaultListCellRenderer
         super ();
         renderer = new CustomLabel ();
 
-        list.addMouseListener ( new MouseAdapter ()
+        /*list.addMouseListener ( new MouseAdapter ()
         {
             @Override
             public void mouseReleased ( MouseEvent e )
@@ -87,7 +103,7 @@ public class CustomListRenderer extends DefaultListCellRenderer
                     }
                 }
             }
-        } );
+        } );*/
     }
 
     /**
@@ -111,7 +127,7 @@ public class CustomListRenderer extends DefaultListCellRenderer
     /**
      * Label that has some custom decorations.
      */
-    private static class CustomLabel extends JLabel
+    private static class CustomLabel extends MyLabel
     {
         private static final Color selectionColor = new Color ( 82, 158, 202 );
 
@@ -160,8 +176,8 @@ public class CustomListRenderer extends DefaultListCellRenderer
 
             if ( selected )
             {
-                g2d.drawImage ( crossIcon.getImage (), getWidth () - 9 - 5 - crossIcon.getIconWidth () / 2,
-                        getHeight () / 2 - crossIcon.getIconHeight () / 2, null );
+                /*g2d.drawImage ( crossIcon.getImage (), getWidth () - 9 - 5 - crossIcon.getIconWidth () / 2,
+                        getHeight () / 2 - crossIcon.getIconHeight () / 2, null );*/
             }
             else if ( data.getNewMessages () > 0 )
             {
