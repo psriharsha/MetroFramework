@@ -290,7 +290,6 @@ public class MyComponentResizer extends MouseAdapter{
 	public void mousePressed(MouseEvent e)
 	{
 		//	The mouseMoved event continually updates this variable
-
 		if (direction == 0) return;
 
 		//  Setup for resizing. All future dragging calculations are done based
@@ -302,7 +301,6 @@ public class MyComponentResizer extends MouseAdapter{
 		pressed = e.getPoint();
 		SwingUtilities.convertPointToScreen(pressed, source);
 		bounds = source.getBounds();
-
 		//  Making sure autoscrolls is false will allow for smoother resizing
 		//  of components
 
@@ -388,7 +386,10 @@ public class MyComponentResizer extends MouseAdapter{
 		{
 			int drag = getDragDistance(current.x, pressed.x, snapSize.width);
 			Dimension boundingSize = getBoundingSize( source );
-			int maximum = Math.min(boundingSize.width - x, maximumSize.width);
+			int maximum = Math.max(boundingSize.width - x, maximumSize.width);
+			/*GraphicsEnvironment ge = GraphicsEnvironment
+			        .getLocalGraphicsEnvironment();
+			    GraphicsDevice[] gs = ge.getScreenDevices();*/
 			drag = getDragBounded(drag, snapSize.width, width, minimumSize.width, maximum);
 			width += drag;
 		}
@@ -397,7 +398,7 @@ public class MyComponentResizer extends MouseAdapter{
 		{
 			int drag = getDragDistance(current.y, pressed.y, snapSize.height);
 			Dimension boundingSize = getBoundingSize( source );
-			int maximum = Math.min(boundingSize.height - y, maximumSize.height);
+			int maximum = Math.max(boundingSize.height - y, maximumSize.height);
 			drag = getDragBounded(drag, snapSize.height, height, minimumSize.height, maximum);
 			height += drag;
 		}
@@ -429,8 +430,7 @@ public class MyComponentResizer extends MouseAdapter{
 
 		while (dimension + drag > maximum)
 			drag -= snapSize;
-
-
+		
 		return drag;
 	}
 
