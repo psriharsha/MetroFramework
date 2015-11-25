@@ -1,4 +1,4 @@
-package com.fuzzy.metro.components;
+package com.fuzzy.metro.chatter;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -17,8 +17,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 
-import com.fuzzy.metro.chatter.CustomData;
-import com.fuzzy.metro.chatter.CustomListRenderer;
+import com.fuzzy.metro.components.MyLabel;
 
 public class MyListRenderer extends DefaultListCellRenderer {
 
@@ -92,15 +91,15 @@ public class MyListRenderer extends DefaultListCellRenderer {
 				g2d.setPaint(Color.WHITE);
 				g2d.fill(new Ellipse2D.Double(2, 2, 32, 32));
 			}
-
+			
 			g2d.setPaint(data.getCircleColor());
 			g2d.fill(new Ellipse2D.Double(5, 5, 26, 26));
 			g2d.drawImage(tipIcon.getImage(), 5 + 13 - tipIcon.getIconWidth() / 2, 5 + 13 - tipIcon.getIconHeight() / 2,
 					null);
 
-			if (selected) {
-				/*g2d.drawImage(crossIcon.getImage(), getWidth() - 9 - 5 - crossIcon.getIconWidth() / 2,
-						getHeight() / 2 - crossIcon.getIconHeight() / 2, null);*/
+			/*if (selected) {
+				g2d.drawImage(crossIcon.getImage(), getWidth() - 9 - 5 - crossIcon.getIconWidth() / 2,
+						getHeight() / 2 - crossIcon.getIconHeight() / 2, null);
 			} else if (data.getNewMessages() > 0) {
 				g2d.setPaint(selectionColor);
 				g2d.fill(new Ellipse2D.Double(getWidth() - 18 - 5, getHeight() / 2 - 9, 18, 18));
@@ -113,7 +112,7 @@ public class MyListRenderer extends DefaultListCellRenderer {
 				g2d.drawString(text, getWidth() - 9 - 5 - fm.stringWidth(text) / 2,
 						getHeight() / 2 + (fm.getAscent() - fm.getLeading() - fm.getDescent()) / 2);
 				g2d.setFont(oldFont);
-			}
+			}*/
 
 			super.paintComponent(g);
 		}

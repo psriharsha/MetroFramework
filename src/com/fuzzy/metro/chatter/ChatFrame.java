@@ -16,7 +16,6 @@ import com.fuzzy.metro.components.Kind;
 import com.fuzzy.metro.components.MyButton;
 import com.fuzzy.metro.components.MyFrame;
 import com.fuzzy.metro.components.MyList;
-import com.fuzzy.metro.components.MyListRenderer;
 import com.fuzzy.metro.components.MyPanel;
 import com.fuzzy.metro.components.MyScrollPane;
 import com.fuzzy.metro.components.MySplitPane;
