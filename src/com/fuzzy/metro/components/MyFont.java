@@ -9,7 +9,7 @@ public class MyFont{
 	public Font getFont(){
 		Font font = null;
 		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResource("Lora-Regular.ttf").openStream());
+			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResource("Segoe.ttf").openStream());
 		} catch (FontFormatException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
