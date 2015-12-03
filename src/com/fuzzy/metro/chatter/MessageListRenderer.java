@@ -80,7 +80,6 @@ public class MessageListRenderer extends DefaultListCellRenderer {
 			content = new MyPanel();
 			content.setLayout(new GridLayout());
 			msgContent = new MyFloatingLabel(msgData.getMessage());
-			msgContent.setSize(getMaximumSize());
 			scroller = new MyScrollPane(msgContent);
 			scroller.setSize(getMaximumSize());
 			content.add(msgContent);
@@ -91,8 +90,14 @@ public class MessageListRenderer extends DefaultListCellRenderer {
 				wrapper.add(content, BorderLayout.CENTER);*/
 				add(top, BorderLayout.NORTH);
 				add(content, BorderLayout.CENTER);
-				System.out.println(scroller.getSize().getHeight());
 			}
+		}
+
+		@Override
+		public Dimension getPreferredSize() {
+			// TODO Auto-generated method stub
+			System.out.println(msgContent.getMinimumSize().height);
+			return new Dimension((int)getSize().getWidth(),(int)msgContent.getMinimumSize().height);
 		}
 		
 	}

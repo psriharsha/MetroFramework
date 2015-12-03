@@ -80,19 +80,19 @@ public class ChatFrame extends MyFrame{
 	
 	private void addContent(){
 		messagePanel = new MyPanel(false);
-		//messageArea = new MyTextArea("");
-		//messageArea.setEditable(false);
-		//scrollMessage = new MyScrollPane(messageArea);
+		/*messageArea = new MyTextArea("");
+		messageArea.setEditable(false);
+		scrollMessage = new MyScrollPane(messageArea);*/
 		DefaultListModel<MessageData> msgs = new DefaultListModel<MessageData>();
 		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		/*msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
 		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
 		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
 		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));*/
+		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
 		JList<MessageData> msgsList = new JList<MessageData>(msgs);
 		msgsList.setCellRenderer(new MessageListRenderer(msgsList));
-		//msgsList.setFixedCellHeight(200);
+		msgsList.ensureIndexIsVisible(1);
 		//messageArea.add(msgsList, BorderLayout.CENTER);
 		scrollMessage = new MyScrollPane(msgsList);
 		scrollMessage.setLayout(new ScrollPaneLayout());
