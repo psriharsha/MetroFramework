@@ -5,12 +5,15 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JSplitPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.ScrollPaneLayout;
 
 import com.fuzzy.metro.components.Kind;
 import com.fuzzy.metro.components.MyButton;
@@ -77,14 +80,26 @@ public class ChatFrame extends MyFrame{
 	
 	private void addContent(){
 		messagePanel = new MyPanel(false);
-		messageArea = new MyTextArea("");
-		messageArea.setEditable(false);
-		scrollMessage = new MyScrollPane(messageArea);
+		//messageArea = new MyTextArea("");
+		//messageArea.setEditable(false);
+		//scrollMessage = new MyScrollPane(messageArea);
+		DefaultListModel<MessageData> msgs = new DefaultListModel<MessageData>();
+		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		/*msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));*/
+		JList<MessageData> msgsList = new JList<MessageData>(msgs);
+		msgsList.setCellRenderer(new MessageListRenderer(msgsList));
+		//msgsList.setFixedCellHeight(200);
+		//messageArea.add(msgsList, BorderLayout.CENTER);
+		scrollMessage = new MyScrollPane(msgsList);
+		scrollMessage.setLayout(new ScrollPaneLayout());
 		scrollMessage.setSize(getMaximumSize());
 		messagePanel.setLayout(new GridLayout());
-		messagePanel.add(scrollMessage, BorderLayout.NORTH);
-		messagePanel.setOpaque(true);
-		messagePanel.setBackground(Color.LIGHT_GRAY);
+		messagePanel.add(scrollMessage);
+		
 		sendPanel = new MyPanel(false);
 		sendPanel.setLayout(new BoxLayout( sendPanel, BoxLayout.X_AXIS));
 		sendText = new MyTextField("Text to send");

@@ -1,5 +1,7 @@
 package com.fuzzy.metro.components;
 
+import java.awt.Color;
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
@@ -23,5 +25,10 @@ public class MyPanel extends JPanel{
 		}else	{
 			setBorder(BorderFactory.createEmptyBorder());
 		}
+	}
+	
+	public void setBackColor(Color c){
+		setOpaque(true);
+		setBackground(c);
 	}
 }

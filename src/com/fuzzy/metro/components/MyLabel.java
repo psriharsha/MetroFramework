@@ -15,6 +15,8 @@ public class MyLabel extends JLabel{
 	public static enum Type{
 		TITLE,
 		HEAD,
+		ITALIC,
+		BOLD,
 		GEN;
 		
 		public Font getFont(){
@@ -22,7 +24,9 @@ public class MyLabel extends JLabel{
 			font = font.deriveFont(Font.PLAIN, 13);
 			switch(this){
 			case TITLE: font = font.deriveFont(Font.BOLD, 13); break;
+			case BOLD: font = font.deriveFont(Font.BOLD, 13); break;
 			case HEAD: font = font.deriveFont(Font.PLAIN, 20); break;
+			case ITALIC: font = font.deriveFont(Font.ITALIC, 12); break;
 			case GEN: 
 			}
 			return font;
@@ -32,8 +36,10 @@ public class MyLabel extends JLabel{
 			Border border = BorderFactory.createEmptyBorder();
 			switch(this){
 			case TITLE: border = BorderFactory.createEmptyBorder(5,15,5,5); break;
+			case BOLD: border = BorderFactory.createEmptyBorder(5,5,5,5); break;
 			case HEAD: border = BorderFactory.createEmptyBorder(5,5,5,5); break;
-			case GEN: border = BorderFactory.createEmptyBorder(5,5,5,5); break;
+			case ITALIC: border = BorderFactory.createEmptyBorder(5,5,5,5); break;
+			case GEN: border = BorderFactory.createEmptyBorder(1,1,1,1); break;
 			}
 			return border;
 		}
