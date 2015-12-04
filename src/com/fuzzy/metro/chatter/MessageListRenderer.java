@@ -4,11 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.text.SimpleDateFormat;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
 import javax.swing.border.Border;
@@ -58,7 +59,7 @@ public class MessageListRenderer extends DefaultListCellRenderer {
 			Border padding = BorderFactory.createEmptyBorder(2, 2, 2, 2);
 			Border line = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(216,225,228));
 			setBorder(BorderFactory.createCompoundBorder(line, padding));
-			setLayout(new BorderLayout());
+			setLayout(new BoxLayout( this, BoxLayout.Y_AXIS));
 		}
 		
 		private void completeLayout(MessageData msgData){
@@ -78,7 +79,7 @@ public class MessageListRenderer extends DefaultListCellRenderer {
 			top.add(new MyLabel(""), BorderLayout.CENTER);
 			top.add(sent, BorderLayout.LINE_END);
 			content = new MyPanel();
-			content.setLayout(new GridLayout());
+			content.setLayout(new BorderLayout());
 			msgContent = new MyFloatingLabel(msgData.getMessage());
 			scroller = new MyScrollPane(msgContent);
 			scroller.setSize(getMaximumSize());
@@ -91,14 +92,15 @@ public class MessageListRenderer extends DefaultListCellRenderer {
 				add(top, BorderLayout.NORTH);
 				add(content, BorderLayout.CENTER);
 			}
+			System.out.println(top.getMinimumSize().height);
 		}
 
-		@Override
+		/*@Override
 		public Dimension getPreferredSize() {
 			// TODO Auto-generated method stub
 			System.out.println(msgContent.getMinimumSize().height);
 			return new Dimension((int)getSize().getWidth(),(int)msgContent.getMinimumSize().height);
-		}
+		}*/
 		
 	}
 
