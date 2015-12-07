@@ -15,9 +15,9 @@ public class MyFloatingLabel extends JTextArea{
 	public MyFloatingLabel(String text) {
         super();
         this.text = text;
-        setText(text);
+        append(text);
         setBackground(null);
-        setEditable(false);
+        //setEditable(false);
         setBorder(null);
         setLineWrap(true);
         setWrapStyleWord(true);
@@ -29,9 +29,9 @@ public class MyFloatingLabel extends JTextArea{
 	public void repaint(Rectangle r) {
 		// TODO Auto-generated method stub
 		super.repaint(r);
-		setText(text);
+		append(text);
         setBackground(null);
-        setEditable(false);
+        //setEditable(false);
         setBorder(null);
         setLineWrap(true);
         setWrapStyleWord(true);

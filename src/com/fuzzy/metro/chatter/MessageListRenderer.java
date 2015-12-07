@@ -21,6 +21,7 @@ import com.fuzzy.metro.components.MyLabel;
 import com.fuzzy.metro.components.MyLabel.Type;
 import com.fuzzy.metro.components.MyPanel;
 import com.fuzzy.metro.components.MyScrollPane;
+import com.fuzzy.metro.components.WrapLayout;
 
 public class MessageListRenderer extends DefaultListCellRenderer {
 
@@ -81,9 +82,10 @@ public class MessageListRenderer extends DefaultListCellRenderer {
 			content = new MyPanel();
 			content.setLayout(new BorderLayout());
 			msgContent = new MyFloatingLabel(msgData.getMessage());
-			scroller = new MyScrollPane(msgContent);
-			scroller.setSize(getMaximumSize());
-			content.add(msgContent);
+			/*scroller = new MyScrollPane(msgContent);
+			scroller.setSize(getMaximumSize());*/
+			msgContent.scrollRectToVisible(getBounds());
+			content.add(msgContent, BorderLayout.CENTER);
 			if(getComponentCount() == 0){
 				/*wrapper = new MyPanel();
 				wrapper.setLayout(new BorderLayout());
@@ -92,7 +94,6 @@ public class MessageListRenderer extends DefaultListCellRenderer {
 				add(top, BorderLayout.NORTH);
 				add(content, BorderLayout.CENTER);
 			}
-			System.out.println(top.getMinimumSize().height);
 		}
 
 		/*@Override
