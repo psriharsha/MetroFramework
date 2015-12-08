@@ -3,8 +3,6 @@ package com.fuzzy.metro.chatter;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.text.SimpleDateFormat;
 
@@ -20,8 +18,6 @@ import com.fuzzy.metro.components.MyFont;
 import com.fuzzy.metro.components.MyLabel;
 import com.fuzzy.metro.components.MyLabel.Type;
 import com.fuzzy.metro.components.MyPanel;
-import com.fuzzy.metro.components.MyScrollPane;
-import com.fuzzy.metro.components.WrapLayout;
 
 public class MessageListRenderer extends DefaultListCellRenderer {
 
@@ -51,8 +47,7 @@ public class MessageListRenderer extends DefaultListCellRenderer {
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-		private MyPanel top, content, wrapper;
-		private MyScrollPane scroller;
+		private MyPanel top, content;
 		public MyFloatingLabel msgContent;
 		
 		public MessagePanel(){
@@ -82,15 +77,9 @@ public class MessageListRenderer extends DefaultListCellRenderer {
 			content = new MyPanel();
 			content.setLayout(new BorderLayout());
 			msgContent = new MyFloatingLabel(msgData.getMessage());
-			/*scroller = new MyScrollPane(msgContent);
-			scroller.setSize(getMaximumSize());*/
 			msgContent.scrollRectToVisible(getBounds());
 			content.add(msgContent, BorderLayout.CENTER);
 			if(getComponentCount() == 0){
-				/*wrapper = new MyPanel();
-				wrapper.setLayout(new BorderLayout());
-				wrapper.add(top, BorderLayout.NORTH);
-				wrapper.add(content, BorderLayout.CENTER);*/
 				add(top, BorderLayout.NORTH);
 				add(content, BorderLayout.CENTER);
 			}
