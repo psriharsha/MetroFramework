@@ -3,8 +3,9 @@ package com.fuzzy.metro.chatter;
 import java.util.Date;
 
 public class MessageData{
-	String sender, message;
-	Date sentAt;
+	private String sender, message;
+	private Date sentAt;
+	private MessageSender senderKind;
 	public String getSender() {
 		return sender;
 	}
@@ -15,10 +16,19 @@ public class MessageData{
 		return sentAt;
 	}
 	
-	public MessageData(String sender,String message, Date sentAt){
+	public MessageSender getSenderKind() {
+		return senderKind;
+	}
+	public MessageData(String sender,String message, Date sentAt, MessageSender senderKind){
 		this.sender = sender;
 		this.message = message;
 		this.sentAt = sentAt;
+		this.senderKind = senderKind;
+	}
+	
+	public enum MessageSender{
+		SELF,
+		COUNTER
 	}
 	
 }

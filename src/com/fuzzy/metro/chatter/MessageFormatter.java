@@ -4,17 +4,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.BorderFactory;
 import javax.swing.SwingConstants;
 
-import com.fuzzy.metro.components.MyLabel;
-import com.fuzzy.metro.components.MyLabel.Type;
+import com.fuzzy.metro.Singleton;
+import com.fuzzy.metro.chatter.MessageData.MessageSender;
 import com.fuzzy.metro.components.MyPanel;
-import com.jidesoft.swing.JideBorderLayout;
+import com.fuzzy.metro.components.MyStyledLabel;
+import com.fuzzy.metro.components.MyStyledLabel.Type;
 import com.jidesoft.swing.JideBoxLayout;
 
-public class MessageFormatter extends JPanel{
+public class MessageFormatter extends MyPanel{
 
 	/**
 	 * 
@@ -22,8 +22,8 @@ public class MessageFormatter extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private MessageData msgData;
 	private MyPanel msgHeader, msgContent;
-	private MyLabel sender, sentAt;
-	private JTextArea message;
+	private MyStyledLabel sender, sentAt;
+	private MyStyledLabel message;
 	
 	public MessageFormatter(MessageData msgData){
 		this.msgData = msgData;
@@ -31,46 +31,43 @@ public class MessageFormatter extends JPanel{
 	}
 	
 	private void createMessagePanel(){
-		msgHeader = new MyPanel();
+		int senderPos, sentAtPos;
+		msgHeader = new MyPanel(false);
 		msgHeader.setLayout(new GridLayout(1,2));
-		sender = new MyLabel(msgData.getSender(),Type.BOLD);
-		sender.setHorizontalAlignment(SwingConstants.LEFT);
-		msgHeader.add(sender);
-		sentAt = new MyLabel(msgData.getSentAt().toString(), Type.ITALIC);
-		sentAt.setHorizontalAlignment(SwingConstants.RIGHT);
-		msgHeader.add(sentAt);
+		if(msgData.getSenderKind() == MessageSender.COUNTER){
+			senderPos = SwingConstants.LEFT;
+			sentAtPos = SwingConstants.RIGHT;
+			sender = new MyStyledLabel(msgData.getSender(),Type.BOLD);
+			sender.setHorizontalAlignment(senderPos);
+			msgHeader.add(sender);
+			sentAt = new MyStyledLabel(msgData.getSentAt().toString(), Type.ITALIC);
+			sentAt.setHorizontalAlignment(sentAtPos);
+			msgHeader.add(sentAt);
+			sender.setForeground(Singleton.counterColor);
+		}else{
+			senderPos = SwingConstants.RIGHT;
+			sentAtPos = SwingConstants.LEFT;
+			sentAt = new MyStyledLabel(msgData.getSentAt().toString(), Type.ITALIC);
+			sentAt.setHorizontalAlignment(sentAtPos);
+			msgHeader.add(sentAt);
+			sender = new MyStyledLabel(msgData.getSender(),Type.BOLD);
+			sender.setHorizontalAlignment(senderPos);
+			msgHeader.add(sender);
+			sender.setForeground(Singleton.selfColor);
+		}
 		JideBoxLayout jbl = new JideBoxLayout(this,JideBoxLayout.Y_AXIS);
 		setLayout(jbl);
 		add(msgHeader, JideBoxLayout.FIX);
-		//message = StyledLabelBuilder.createStyledLabel(msgData.getMessage());
-		message = new JTextArea(){
-
-			@Override
-			public boolean getLineWrap() {
-				// TODO Auto-generated method stub
-				return true;
-			}
-
-			@Override
-			public boolean getWrapStyleWord() {
-				// TODO Auto-generated method stub
-				return true;
-			}
-
-			@Override
-			public boolean isEditable() {
-				// TODO Auto-generated method stub
-				return false;
-			}
-			
-			
-		};
+		message = new MyStyledLabel(msgData.getMessage());
+		//message = 
 		message.setBackground(null);
-		message.setText(msgData.getMessage());
-		msgContent= new MyPanel();
-		msgContent.setLayout(new JideBorderLayout());
-		msgContent.add(message,JideBorderLayout.CENTER);
+		message.setLineWrap(true);
+		message.setSize(200,message.getPreferredSize().height);
+		msgContent= new MyPanel(false);
+		msgContent.setLayout(new BorderLayout());
+		msgContent.add(message,BorderLayout.CENTER);
 		add(msgContent, JideBoxLayout.FIX);
+		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Singleton.defaultColor));
 	}
 	
 }

@@ -12,10 +12,12 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.JScrollBar;
 import javax.swing.JSplitPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ScrollPaneLayout;
 
+import com.fuzzy.metro.chatter.MessageData.MessageSender;
 import com.fuzzy.metro.components.Kind;
 import com.fuzzy.metro.components.MyButton;
 import com.fuzzy.metro.components.MyFrame;
@@ -25,6 +27,7 @@ import com.fuzzy.metro.components.MyScrollPane;
 import com.fuzzy.metro.components.MySplitPane;
 import com.fuzzy.metro.components.MyTextArea;
 import com.fuzzy.metro.components.MyTextField;
+import com.jidesoft.swing.JideBoxLayout;
 
 public class ChatFrame extends MyFrame{
 
@@ -38,8 +41,7 @@ public class ChatFrame extends MyFrame{
 		setTitle("ChatFrame - Chatter");
 		createLayout(getContentPane());
 		setVisible(true);
-		setSize(new Dimension(500,500));
-		pack();
+		setSize(600,400);
 	}
 
 	@Override
@@ -60,10 +62,10 @@ public class ChatFrame extends MyFrame{
 	private void addUsers() {
 		// TODO Auto-generated method stub
 		DefaultListModel<CustomData> listModel = new DefaultListModel<CustomData>();
-		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 1, "Anna Williams" ) );
-		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 0, "Lucy Frank" ) );
-		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 3, "Mikle Garin" ) );
-		listModel.addElement ( new CustomData ( new Color ( 209, 52, 23 ), 0, "Joe Fritz" ) );
+		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 1, "Vishal Barot" ) );
+		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 0, "Bert Whitehead" ) );
+		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 3, "Colin McLauchlan" ) );
+		listModel.addElement ( new CustomData ( new Color ( 209, 52, 23 ), 0, "Josef" ) );
 		colleagues = new MyList(listModel);
 		colleagues.setCellRenderer(new MyListRenderer(colleagues));
 		scrollList = new MyScrollPane(colleagues);
@@ -86,28 +88,24 @@ public class ChatFrame extends MyFrame{
 		messageArea.setEditable(false);
 		scrollMessage = new MyScrollPane(messageArea);*/
 		List<MessageData> msgs = new ArrayList<MessageData>();
-		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		/*JList<MessageData> msgsList = new JList<MessageData>(msgs);
-		//msgsList.setCellRenderer(new MessageListRenderer(msgsList));
-		msgsList.ensureIndexIsVisible(1);
-		//messageArea.add(msgsList, BorderLayout.CENTER);*/	
-		msgDetailPanel = new MyPanel();
-		msgDetailPanel.setLayout(new BoxLayout(msgDetailPanel,BoxLayout.Y_AXIS));
+		msgs.add(new MessageData("Sri Harsha","Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.SELF));
+		msgs.add(new MessageData("Sri Harsha","Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.SELF));
+		msgs.add(new MessageData("Vishal Barot","Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.COUNTER));
+		msgs.add(new MessageData("Sri Harsha","Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.SELF));
+		msgs.add(new MessageData("Vishal Barot","Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.COUNTER));
+		messageFormatterList = new ArrayList<MessageFormatter>();
+		msgDetailPanel = new MyPanel(false);
+		msgDetailPanel.setLayout(new JideBoxLayout(msgDetailPanel, JideBoxLayout.Y_AXIS));
 		for(MessageData msg: msgs){
-			msgDetailPanel.add(new MessageFormatter(msg));
+			MessageFormatter formatter = new MessageFormatter(msg);
+			formatter.setPreferredSize(new Dimension(msgDetailPanel.getSize().width,100));
+			messageFormatterList.add(formatter);
+			msgDetailPanel.add(formatter, JideBoxLayout.FLEXIBLE);
 		}
 		scrollMessage = new MyScrollPane(msgDetailPanel);
 		scrollMessage.setLayout(new ScrollPaneLayout());
-		//scrollMessage.setSize(getMaximumSize());
+		conditional_autoscroll(scrollMessage);
+
 		messagePanel.setLayout(new GridLayout());
 		messagePanel.add(scrollMessage);
 		
@@ -122,6 +120,15 @@ public class ChatFrame extends MyFrame{
 		contentPanel.add(messagePanel, BorderLayout.CENTER);
 		contentPanel.add(sendPanel, BorderLayout.SOUTH);
 	}
+	
+	public void conditional_autoscroll(MyScrollPane scroll_pane) {
+
+		JScrollBar vscroll = scroll_pane.getVerticalScrollBar();
+
+		int distance_to_bottom = vscroll.getMaximum() - ( vscroll.getValue() + vscroll.getVisibleAmount() );
+
+			vscroll.setValue( distance_to_bottom);
+	}
 
 	public static void main(String[] args){
 		new ChatFrame();
@@ -134,4 +141,5 @@ public class ChatFrame extends MyFrame{
 	MyTextField sendText;
 	MyButton sendButton;
 	MyTextArea messageArea;
+	List<MessageFormatter> messageFormatterList;
 }
