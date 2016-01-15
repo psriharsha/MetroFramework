@@ -5,12 +5,13 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JSplitPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ScrollPaneLayout;
@@ -38,6 +39,7 @@ public class ChatFrame extends MyFrame{
 		createLayout(getContentPane());
 		setVisible(true);
 		setSize(new Dimension(500,500));
+		pack();
 	}
 
 	@Override
@@ -73,7 +75,7 @@ public class ChatFrame extends MyFrame{
 		listPanel.setLayout(new GridLayout(1, 1));
 		listPanel.setBorder(BorderFactory.createEmptyBorder());
 		listPanel.add(scrollList);
-		int width = (int) (getSize().getWidth()/1.5);
+		int width = (int) (getSize().getWidth()/1.75);
 		int height = this.getSize().height;
 		listPanel.setMinimumSize(new Dimension(width, height));
 	}
@@ -83,20 +85,29 @@ public class ChatFrame extends MyFrame{
 		/*messageArea = new MyTextArea("");
 		messageArea.setEditable(false);
 		scrollMessage = new MyScrollPane(messageArea);*/
-		DefaultListModel<MessageData> msgs = new DefaultListModel<MessageData>();
-		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		msgs.addElement(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
-		JList<MessageData> msgsList = new JList<MessageData>(msgs);
-		msgsList.setCellRenderer(new MessageListRenderer(msgsList));
+		List<MessageData> msgs = new ArrayList<MessageData>();
+		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		msgs.add(new MessageData("Sri Harsha","This is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a messageThis is a message",new Date()));
+		/*JList<MessageData> msgsList = new JList<MessageData>(msgs);
+		//msgsList.setCellRenderer(new MessageListRenderer(msgsList));
 		msgsList.ensureIndexIsVisible(1);
-		//messageArea.add(msgsList, BorderLayout.CENTER);
-		scrollMessage = new MyScrollPane(msgsList);
+		//messageArea.add(msgsList, BorderLayout.CENTER);*/	
+		msgDetailPanel = new MyPanel();
+		msgDetailPanel.setLayout(new BoxLayout(msgDetailPanel,BoxLayout.Y_AXIS));
+		for(MessageData msg: msgs){
+			msgDetailPanel.add(new MessageFormatter(msg));
+		}
+		scrollMessage = new MyScrollPane(msgDetailPanel);
 		scrollMessage.setLayout(new ScrollPaneLayout());
-		scrollMessage.setSize(getMaximumSize());
+		//scrollMessage.setSize(getMaximumSize());
 		messagePanel.setLayout(new GridLayout());
 		messagePanel.add(scrollMessage);
 		
@@ -116,7 +127,7 @@ public class ChatFrame extends MyFrame{
 		new ChatFrame();
 	}
 	
-	MyPanel listPanel, contentPanel, sendPanel, messagePanel;
+	MyPanel listPanel, contentPanel, sendPanel, messagePanel, msgDetailPanel;
 	MyList colleagues;
 	MySplitPane splitPane;
 	MyScrollPane scrollList, scrollMessage;
