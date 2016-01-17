@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,15 +14,16 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
-import javax.swing.JScrollBar;
 import javax.swing.JSplitPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ScrollPaneLayout;
 
+import com.fuzzy.metro.Singleton;
 import com.fuzzy.metro.chatter.MessageData.MessageSender;
 import com.fuzzy.metro.components.Kind;
 import com.fuzzy.metro.components.MyButton;
 import com.fuzzy.metro.components.MyFrame;
+import com.fuzzy.metro.components.MyLabel;
 import com.fuzzy.metro.components.MyList;
 import com.fuzzy.metro.components.MyPanel;
 import com.fuzzy.metro.components.MyScrollPane;
@@ -49,7 +52,7 @@ public class ChatFrame extends MyFrame{
 		// TODO Auto-generated method stub
 		listPanel = new MyPanel();
 		addUsers();
-		contentPanel = new MyPanel();
+		contentPanel = new MyPanel(false);
 		addContent();
 		setLayout(new BorderLayout());
 		splitPane = new MySplitPane(JSplitPane.HORIZONTAL_SPLIT, listPanel, contentPanel);
@@ -62,8 +65,8 @@ public class ChatFrame extends MyFrame{
 	private void addUsers() {
 		// TODO Auto-generated method stub
 		DefaultListModel<CustomData> listModel = new DefaultListModel<CustomData>();
-		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 1, "Vishal Barot" ) );
-		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 0, "Bert Whitehead" ) );
+		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 1, "Sri Karthik" ) );
+		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 0, "Sai Hema" ) );
 		listModel.addElement ( new CustomData ( new Color ( 135, 163, 14 ), 3, "Colin McLauchlan" ) );
 		listModel.addElement ( new CustomData ( new Color ( 209, 52, 23 ), 0, "Josef" ) );
 		colleagues = new MyList(listModel);
@@ -88,11 +91,11 @@ public class ChatFrame extends MyFrame{
 		messageArea.setEditable(false);
 		scrollMessage = new MyScrollPane(messageArea);*/
 		List<MessageData> msgs = new ArrayList<MessageData>();
-		msgs.add(new MessageData("Sri Harsha","Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.SELF));
-		msgs.add(new MessageData("Sri Harsha","Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.SELF));
-		msgs.add(new MessageData("Vishal Barot","Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.COUNTER));
-		msgs.add(new MessageData("Sri Harsha","Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.SELF));
-		msgs.add(new MessageData("Vishal Barot","Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.COUNTER));
+		msgs.add(new MessageData("Sri Harsha","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.SELF));
+		msgs.add(new MessageData("Sri Harsha","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.SELF));
+		msgs.add(new MessageData("Sri Karthik","Lorem Ipsum is simply dummy text of the printing and typesetting industry.  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.COUNTER));
+		msgs.add(new MessageData("Sri Harsha","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.SELF));
+		msgs.add(new MessageData("Sri Karthik","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.COUNTER));
 		messageFormatterList = new ArrayList<MessageFormatter>();
 		msgDetailPanel = new MyPanel(false);
 		msgDetailPanel.setLayout(new JideBoxLayout(msgDetailPanel, JideBoxLayout.Y_AXIS));
@@ -104,7 +107,6 @@ public class ChatFrame extends MyFrame{
 		}
 		scrollMessage = new MyScrollPane(msgDetailPanel);
 		scrollMessage.setLayout(new ScrollPaneLayout());
-		conditional_autoscroll(scrollMessage);
 
 		messagePanel.setLayout(new GridLayout());
 		messagePanel.add(scrollMessage);
@@ -115,31 +117,46 @@ public class ChatFrame extends MyFrame{
 		sendPanel.add(sendText);
 		sendButton = new MyButton("Send", Kind.SUCCESS);
 		sendButton.setSize(50,20);
+		sendButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				newMessage(new MessageData("Sai Hema","Lorem Ipsum is simply dummy text of the printing and typesetting industry.  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",new Date(), MessageSender.COUNTER));
+			}
+			
+		});
 		sendPanel.add(sendButton);
+		infoPanel = new MyPanel();
+		infoPanel.setLayout(new GridLayout(1,2));
+		counterName = new MyLabel("Sri Karthik",com.fuzzy.metro.components.MyLabel.Type.TITLE);
+		counterName.setForeground(Singleton.counterColor);
+		
 		contentPanel.setLayout(new BorderLayout());
 		contentPanel.add(messagePanel, BorderLayout.CENTER);
 		contentPanel.add(sendPanel, BorderLayout.SOUTH);
 	}
 	
-	public void conditional_autoscroll(MyScrollPane scroll_pane) {
-
-		JScrollBar vscroll = scroll_pane.getVerticalScrollBar();
-
-		int distance_to_bottom = vscroll.getMaximum() - ( vscroll.getValue() + vscroll.getVisibleAmount() );
-
-			vscroll.setValue( distance_to_bottom);
+	public void newMessage(MessageData msg){
+		MessageFormatter formatter = new MessageFormatter(msg);
+		formatter.setPreferredSize(new Dimension(msgDetailPanel.getSize().width,100));
+		messageFormatterList.add(formatter);
+		msgDetailPanel.add(formatter, JideBoxLayout.FLEXIBLE);
+		//formatter.revalidate();
+		scrollMessage.revalidate();
 	}
 
 	public static void main(String[] args){
 		new ChatFrame();
 	}
 	
-	MyPanel listPanel, contentPanel, sendPanel, messagePanel, msgDetailPanel;
+	MyPanel listPanel, contentPanel, sendPanel, messagePanel, msgDetailPanel, infoPanel;
 	MyList colleagues;
 	MySplitPane splitPane;
 	MyScrollPane scrollList, scrollMessage;
 	MyTextField sendText;
 	MyButton sendButton;
 	MyTextArea messageArea;
+	MyLabel counterName;
 	List<MessageFormatter> messageFormatterList;
 }

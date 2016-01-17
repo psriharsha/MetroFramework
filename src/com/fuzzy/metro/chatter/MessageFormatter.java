@@ -28,6 +28,7 @@ public class MessageFormatter extends MyPanel{
 	public MessageFormatter(MessageData msgData){
 		this.msgData = msgData;
 		createMessagePanel();
+		setBorder(BorderFactory.createEmptyBorder());
 	}
 	
 	private void createMessagePanel(){
@@ -55,17 +56,19 @@ public class MessageFormatter extends MyPanel{
 			msgHeader.add(sender);
 			sender.setForeground(Singleton.selfColor);
 		}
+		msgHeader.setBackColor(Color.ORANGE);
 		JideBoxLayout jbl = new JideBoxLayout(this,JideBoxLayout.Y_AXIS);
 		setLayout(jbl);
 		add(msgHeader, JideBoxLayout.FIX);
 		message = new MyStyledLabel(msgData.getMessage());
 		//message = 
-		message.setBackground(null);
+		message.setBackground(Color.GRAY);
 		message.setLineWrap(true);
 		message.setSize(200,message.getPreferredSize().height);
 		msgContent= new MyPanel(false);
 		msgContent.setLayout(new BorderLayout());
 		msgContent.add(message,BorderLayout.CENTER);
+		msgContent.setBackColor(Color.CYAN);
 		add(msgContent, JideBoxLayout.FIX);
 		setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Singleton.defaultColor));
 	}
