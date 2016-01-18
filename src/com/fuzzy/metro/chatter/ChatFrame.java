@@ -14,14 +14,18 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JSplitPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ScrollPaneLayout;
+import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicComboPopup;
 
 import com.fuzzy.metro.Singleton;
 import com.fuzzy.metro.chatter.MessageData.MessageSender;
 import com.fuzzy.metro.components.Kind;
 import com.fuzzy.metro.components.MyButton;
+import com.fuzzy.metro.components.MyComboBox;
 import com.fuzzy.metro.components.MyFrame;
 import com.fuzzy.metro.components.MyLabel;
 import com.fuzzy.metro.components.MyList;
@@ -129,17 +133,28 @@ public class ChatFrame extends MyFrame{
 		sendPanel.add(sendButton);
 		infoPanel = new MyPanel();
 		infoPanel.setLayout(new GridLayout(1,2));
-		counterName = new MyLabel("Sri Karthik",com.fuzzy.metro.components.MyLabel.Type.TITLE);
-		counterName.setForeground(Singleton.counterColor);
-		
+		counterName = new MyLabel("Sri Karthik",com.fuzzy.metro.components.MyLabel.Type.LARGE);
+		counterName.setForeground(Color.WHITE);
+		infoPanel.add(counterName);
+		infoPanel.setBackColor(Singleton.defaultColor);
+		optionsList = new MyComboBox(SwingConstants.RIGHT, true);
+		//optionsList.add();
+		//optionsList.addItem("Settings");
+		optionsList.addItem("Clear Messages");
+		optionsList.addItem("Logout");
+		BasicComboPopup popup = (BasicComboPopup)optionsList.getAccessibleContext().getAccessibleChild(0);
+		popup.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.LIGHT_GRAY));
+		infoPanel.add(optionsList);
+		infoPanel.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, Singleton.defaultColor));
 		contentPanel.setLayout(new BorderLayout());
+		contentPanel.add(infoPanel, BorderLayout.NORTH);
 		contentPanel.add(messagePanel, BorderLayout.CENTER);
 		contentPanel.add(sendPanel, BorderLayout.SOUTH);
 	}
 	
 	public void newMessage(MessageData msg){
 		MessageFormatter formatter = new MessageFormatter(msg);
-		formatter.setPreferredSize(new Dimension(msgDetailPanel.getSize().width,100));
+		formatter.setPreferredSize(new Dimension(msgDetailPanel.getSize().width,10));
 		messageFormatterList.add(formatter);
 		msgDetailPanel.add(formatter, JideBoxLayout.FLEXIBLE);
 		//formatter.revalidate();
@@ -158,5 +173,6 @@ public class ChatFrame extends MyFrame{
 	MyButton sendButton;
 	MyTextArea messageArea;
 	MyLabel counterName;
+	MyComboBox optionsList;
 	List<MessageFormatter> messageFormatterList;
 }

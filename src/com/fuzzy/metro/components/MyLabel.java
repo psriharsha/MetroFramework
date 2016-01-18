@@ -17,6 +17,7 @@ public class MyLabel extends JLabel{
 		HEAD,
 		ITALIC,
 		BOLD,
+		LARGE,
 		GEN;
 		
 		public Font getFont(){
@@ -27,6 +28,7 @@ public class MyLabel extends JLabel{
 			case BOLD: font = font.deriveFont(Font.BOLD, 13); break;
 			case HEAD: font = font.deriveFont(Font.PLAIN, 20); break;
 			case ITALIC: font = font.deriveFont(Font.ITALIC, 12); break;
+			case LARGE: font = font.deriveFont(Font.BOLD, 15); break;
 			case GEN: 
 			}
 			return font;
@@ -39,6 +41,7 @@ public class MyLabel extends JLabel{
 			case BOLD: border = BorderFactory.createEmptyBorder(5,5,5,5); break;
 			case HEAD: border = BorderFactory.createEmptyBorder(5,5,5,5); break;
 			case ITALIC: border = BorderFactory.createEmptyBorder(5,5,5,5); break;
+			case LARGE: border = BorderFactory.createEmptyBorder(5, 5, 5, 5);break;
 			case GEN: border = BorderFactory.createEmptyBorder(1,1,1,1); break;
 			}
 			return border;
