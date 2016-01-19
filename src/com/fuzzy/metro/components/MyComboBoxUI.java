@@ -1,9 +1,13 @@
 package com.fuzzy.metro.components;
 
+import java.awt.Dimension;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.basic.BasicComboPopup;
+import javax.swing.plaf.basic.ComboPopup;
 
 import com.fuzzy.metro.Singleton;
 import com.jidesoft.plaf.basic.ThemePainter;
@@ -14,7 +18,7 @@ public class MyComboBoxUI extends BasicComboBoxUI{
 	private JideButton arrowButton;
 	
 	protected JButton createArrowButton() {
-		ImageIcon icon = createImageIcon("./cogs.png");
+		ImageIcon icon = MyIcon.createImageIcon("./cogs.png");
 		arrowButton = new JideButton(icon);
 		arrowButton.setOpaque(true);
 		arrowButton.setBackground(Singleton.defaultColor);
@@ -23,15 +27,13 @@ public class MyComboBoxUI extends BasicComboBoxUI{
 		arrowButton.setBackgroundOfState(ThemePainter.STATE_ROLLOVER, Singleton.defaultColor);
         return arrowButton;
     }
-	
-	protected static ImageIcon createImageIcon(String path) {
-		java.net.URL imgURL = MyComboBoxUI.class.getResource(path);
-		if (imgURL != null) {
-			return new ImageIcon(imgURL);
-		} else {
-			System.err.println("Couldn't find file: " + path);
-			return null;
-		}
+
+	@Override
+	protected ComboPopup createPopup() {
+		// TODO Auto-generated method stub
+		BasicComboPopup comboPopup = new BasicComboPopup(this.comboBox);
+		comboPopup.setSize(new Dimension(5,5));
+		return comboPopup;
 	}
 
 }

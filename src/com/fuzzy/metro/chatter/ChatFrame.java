@@ -19,6 +19,9 @@ import javax.swing.JSplitPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.basic.BasicComboPopup;
 
 import com.fuzzy.metro.Singleton;

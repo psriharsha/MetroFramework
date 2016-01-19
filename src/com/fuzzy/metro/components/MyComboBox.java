@@ -76,7 +76,7 @@ public class MyComboBox extends JComboBox<String>{
 			if(cellHasFocus) setBackground(Singleton.defaultColor);
 			list.setSelectionBackground(Singleton.defaultColor);
 			list.setSelectionForeground(Color.WHITE);
-			list.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.WHITE));
+			//list.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.WHITE));
 			return this;
 		}
 		

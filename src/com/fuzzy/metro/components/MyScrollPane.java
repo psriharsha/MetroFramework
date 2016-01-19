@@ -17,6 +17,7 @@ public class MyScrollPane extends JScrollPane{
 	
 	public MyScrollPane(){
 		super();
+		setUserInterface();
 	}
 	
 	public MyScrollPane(Component component) {
@@ -25,22 +26,13 @@ public class MyScrollPane extends JScrollPane{
 		setSize(getMaximumSize());
 		getViewport().setBackground(Color.WHITE);
 		setBorder(BorderFactory.createEmptyBorder());
+		setUserInterface();
 	}
 
-	@SuppressWarnings("unused")
-	private void setScrollUI() {
+	private void setUserInterface() {
 		// TODO Auto-generated method stub
-		setUI(new BasicScrollBarUI(){
-			protected void configureScrollBarColors(){
-				//LookAndFeel.installColors(scrollbar, "ScrollBar.background","ScrollBar.foreground");
-				thumbHighlightColor = UIManager.getColor("ScrollBar.thumbHighlight");
-				thumbLightShadowColor = UIManager.getColor("ScrollBar.thumbShadow");
-				thumbDarkShadowColor = UIManager.getColor("ScrollBar.thumbDarkShadow");
-				thumbColor = UIManager.getColor("ScrollBar.thumb");
-				trackColor = UIManager.getColor("ScrollBar.track");
-				trackHighlightColor = UIManager.getColor("ScrollBar.trackHighlight");
-			}
-		});
+		setHorizontalScrollBar(new MyScrollBar());
+		setVerticalScrollBar(new MyScrollBar());
 	}
 
 }
